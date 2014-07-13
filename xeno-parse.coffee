@@ -17,3 +17,5 @@ Polymer 'xeno-parse',
 
     html = marked content
     console.log html
+
+    @$.content.innerHTML = html
