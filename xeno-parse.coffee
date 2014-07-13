@@ -1,4 +1,6 @@
 Polymer 'xeno-parse',
 
-  ready: ->
-    console.log 'ok'
+  domReady: ->
+    contentRoot = document.querySelector('xeno-parse link[rel="import"]').import
+    content = (contentRoot.querySelector 'body').innerHTML
+    console.log content
