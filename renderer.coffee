@@ -1,4 +1,18 @@
 class Renderer extends marked.Renderer
 
   heading: (text, level) ->
-    return '<xeno-space>' + text + '/<xeno-space>'
+    escapedText = text.toLowerCase().replace /[^\w]+/g, '-'
+
+    html = """
+      <xeno-space>
+        <h#{level}>
+          <a name="#{escapedText}" class="anchor" href="##{escapedText}">
+            <span class="header-link"></span>
+          </a>
+          #{text}
+        </h#{level}>
+      </xeno-space>
+
+    """
+
+    return html
