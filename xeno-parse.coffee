@@ -6,7 +6,7 @@ Polymer 'xeno-parse',
     # console.log content
 
     marked.setOptions
-      renderer: new marked.Renderer()
+      renderer: new Renderer()
       gfm: true
       tables: true
       breaks: false
