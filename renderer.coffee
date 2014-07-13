@@ -1,9 +1,13 @@
 class Renderer extends marked.Renderer
 
+  isBracketOpening: false
+
   heading: (text, level) ->
     escapedText = text.toLowerCase().replace /[^\w]+/g, '-'
 
-    html = """
+    html = @closeBracket()
+
+    html += """
       <xeno-space>
         <h#{level}>
           <a name="#{escapedText}" class="anchor" href="##{escapedText}">
@@ -11,8 +15,25 @@ class Renderer extends marked.Renderer
           </a>
           #{text}
         </h#{level}>
-      </xeno-space>
 
     """
 
+    @isBracketOpening = true
+
     return html
+
+  closeBracket: (html) ->
+    html ||= ''
+
+    if @isBracketOpening
+      html += """
+        </xeno-space>
+
+      """
+
+      @isBracketOpening = false
+
+    return html
+
+  postprocess: (html) ->
+    return @closeBracket html
