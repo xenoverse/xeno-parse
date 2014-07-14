@@ -21,4 +21,6 @@ Polymer 'xeno-parse',
     html = @renderer.postprocess html
     console.log html
 
-    @$.content.innerHTML = html
+    el = document.createElement 'div'
+    el.innerHTML = html
+    @$.content.appendChild el
